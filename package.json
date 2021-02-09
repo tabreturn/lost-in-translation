@@ -1,0 +1,24 @@
+{
+  "name": "blueDot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "randomcolor": "^0.5.4",
+    "three": "^0.118.3",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
