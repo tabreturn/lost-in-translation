@@ -1,6 +1,7 @@
 // blueDot by @jquery404, @tabreturn, @andre, @kun, @hiroshika
 // app.js
 const https = require('https');
+const http = require('http')
 const fs = require('fs');
 const express = require('express');
 
@@ -35,3 +36,4 @@ app.get('/vr', (req, res) =>{
 //   }).listen(8000);
 
 https.createServer(options, app).listen(8000);
+http.createServer(app).listen(8080);
