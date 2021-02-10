@@ -13,15 +13,27 @@
     <a-sky color="#00FF00"></a-sky>
     <a-entity laser-controls="hand: left"></a-entity>
     <a-entity laser-controls="hand: right"></a-entity>
+    <!-- <a-assets>
+        <a-asset-item id="lantern-obj" src="../lantern.obj"></a-asset-item>
+        <a-asset-item id="lantern-mtl" src="../lantern.mtl"></a-asset-item>
+    </a-assets>
+    <a-entity id='lantern' scale='.1 .1 .1' position='0 1.5 -3' obj-model="obj: #lantern-obj; mtl: #lantern-mtl"></a-entity> -->
+    <a-assets>
+        <a-asset-item id="tree" src="../lantern.gltf"></a-asset-item>
+      </a-assets>
+    
+      <a-entity scale='.01 .01 .01' position='0 1.5 -3' gltf-model="#tree"></a-entity>
+    <a-entity light="type: point; color: #FFF; intensity: 0.3;" position="0 1.3 -3"></a-entity>
+
     <!-- <a-light id="lantern" type="point" color="blue" position="0 0 0"></a-light> -->
     <!-- <a-entity light="type: point; intensity: 0.75; distance: 50; decay: 2"
     position="0 0 0"></a-entity> -->
     <a-entity id="map" position="0 0.5 -3">
       <!-- floors -->
-      <a-box id="lantern" position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-      <!-- <a-box position="0 0 1" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+      <a-box position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+      <a-box position="0 0 1" material="color: #FFF; shader: flat; src: texture.png"></a-box>
       <a-box position="0 0 2" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-      <a-box position="0 0 3" material="color: #FFF; shader: flat; src: texture.png"></a-box>-->
+      <a-box position="0 0 3" material="color: #FFF; shader: flat; src: texture.png"></a-box>
       <!-- left walls -->
       <a-box position="-1 1 0" material="color: #00F"></a-box>
       <a-box position="-1 1 1" material="color: #00F"></a-box>
