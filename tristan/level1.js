@@ -1,27 +1,22 @@
-/*
-AFRAME.registerComponent('raycaster-listen', {
-	init: function () {
-    // Use events to figure out what raycaster is listening so we don't have to
-    // hardcode the raycaster.
-    this.el.addEventListener('raycaster-intersected', evt => {
-      this.raycaster = evt.detail.el;
-    });
-    this.el.addEventListener('raycaster-intersected-cleared', evt => {
-      this.raycaster = null;
-    });
-  },
+let xco, yco, zco;
 
-  tick: function () {
-    if (!this.raycaster) { return; }  // Not intersecting.
-
-    let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
-    if (!intersection) { return; }
-    console.log(intersection.point);
+AFRAME.registerComponent('map', {
+  // retrieve map x, y, z coords at start
+  init: function () {
+    let el = this.el;
+    xco = el.getAttribute('position').x;
+    yco = el.getAttribute('position').y;
+    zco = el.getAttribute('position').z;
   }
 });
 
-<!-- raycaster, laser, and dark grey box -->
-<a-entity id="raycaster" raycaster></a-entity>
-<a-entity laser-controls="hand: right"></a-entity>
-<a-box raycaster-listen position="0 0.5 -3" material="color: #444; shader: flat"></a-box>
-*/
+// listen for trigger operations
+AFRAME.registerComponent('triggerlistener', {
+  init: function () {
+    // add triggerup (on release) listener
+    this.el.addEventListener('triggerup', function (evt) {
+      zco += 1;
+      document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
+    });
+  }
+});

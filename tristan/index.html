@@ -2,46 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>movement</title>
-  <meta name="description" content="Hello, World! - A-Frame">
+  <title>Level 1</title>
+  <link rel="icon" href="https://aframe.io/images/aframe-logo-192.png" />
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="level1.js"></script>
 </head>
 
+<body>
+  <a-scene>
+    <a-sky color="#00FF00"></a-sky>
+
+<!-- WIP, TESTS -->
 <script>
-var xco, yco, zco;
-
-AFRAME.registerComponent('map', {
-  init: function () {
-    var el = this.el;
-    xco = el.getAttribute('position').x;
-    yco = el.getAttribute('position').y;
-    zco = el.getAttribute('position').z;
-  }
-});
-
-AFRAME.registerComponent('triggerlistener', {
-  init: function () {
-    document.getElementById('clickme').setAttribute('position', {x: 0, y: 0.6, z: -1});
-    var el = this.el;
-
-    el.addEventListener('triggerup', function (evt) {
-      zco += 1;
-      document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
-      //el.setAttribute('visible', !el.getAttribute('visible'));
-    });
-    /*
-    el.addEventListener('triggerup', function (evt) {
-      console.log(evt)
-      document.getElementById('clickme').setAttribute('position', {x: 0, y: 0.8, z: -0.35});
-      yco += 0.01;
-      document.getElementById('map').setAttribute('position', {x: 0, y: yco, z: -0.35});
-      //el.setAttribute('visible', !el.getAttribute('visible'));
-    });
-    */
-  }
-});
-
 AFRAME.registerComponent('rotation-reader', {
   tick: function () {
     //console.log(document.querySelector("[camera]").getObject3D('camera').quaternion );
@@ -60,30 +32,21 @@ AFRAME.registerComponent('hud', {
     //  hudtxt = document.getElementById('hud').setAttribute('text') = hudtxt;
   }
 });
-
-
-
-
-
 </script>
-
-<body>
-  <a-scene>
-    <a-sky color="#00FF00"></a-sky>
-
 <a-entity rotation-reader></a-entity>
 <a-entity hud id='hud' text="value: Hello World;" position="0.25 1.5 -1.5" material="color: #000"></a-entity>
-
-<a-entity laser-controls raycaster="objects: [data-raycastable]; far: 0.8"></a-entity>
-<a-entity oculus-go-controls="hand: right" triggerlistener></a-entity>
 <a-box id="clickme" material="color: #444; shader: flat" raycastable></a-box>
+
+    <!-- add entities for raycaster and oculus controls -->
+    <a-entity laser-controls raycaster="objects: [data-raycastable]; far: 0.8"></a-entity>
+    <a-entity oculus-go-controls="hand: right" triggerlistener></a-entity>
 
     <!-- map/level -->
     <a-entity id="map" position="0 0.5 -3" map>
       <!-- floors -->
-      <a-box position="0 0 1" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-      <a-box position="0 0 2" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-      <a-box position="0 0 3" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+      <a-box position="0 0 1" material="color: #FFF; shader: flat; src: textures/texture.png"></a-box>
+      <a-box position="0 0 2" material="color: #FFF; shader: flat; src: textures/texture.png"></a-box>
+      <a-box position="0 0 3" material="color: #FFF; shader: flat; src: textures/texture.png"></a-box>
       <!-- left walls -->
       <a-box position="-1 1 0" material="color: #00F"></a-box>
       <a-box position="-1 1 1" material="color: #00F"></a-box>
