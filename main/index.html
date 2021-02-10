@@ -6,6 +6,16 @@
     <title>blueDot</title>
 </head>
 <body>
-    <h1>blueDot</h1>
+    <div id="game"></div>
+
+    <script type="module" src="scripts/main.js"></script>
+    <script type="module">
+        import { Init } from './scripts/main.js';
+
+        window.onload = function(){
+            Init();
+        };
+
+    </script>
 </body>
 </html>
