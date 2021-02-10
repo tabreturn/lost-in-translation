@@ -16,25 +16,14 @@
 <script>
 AFRAME.registerComponent('rotation-reader', {
   tick: function () {
-    //console.log(document.querySelector("[camera]").getObject3D('camera').quaternion );
-  }
-});
-
-AFRAME.registerComponent('hud', {
-  tick: function () {
-    //document.getElementById('hud').getAttribute('text').value = hudtxt
-    /*
-    hudtxt = document.getElementById('hud').getAttribute('text');
-    hudtxt.value = document.querySelector('[camera]').getObject3D('camera').getWorldQuaternion();
+    let hudtxt = document.getElementById('hud').getAttribute('text');
+    hudtxt.value = document.querySelector('[camera]').getAttribute('rotation').y;
     document.getElementById('hud').setAttribute('text', hudtxt.value);
-    */
-    //hudtxt.value =
-    //  hudtxt = document.getElementById('hud').setAttribute('text') = hudtxt;
+    console.log......
   }
 });
 </script>
 <a-entity rotation-reader></a-entity>
-<a-entity hud id='hud' text="value: Hello World;" position="0.25 1.5 -1.5" material="color: #000"></a-entity>
 <a-box id="clickme" material="color: #444; shader: flat" raycastable></a-box>
 
     <!-- add entities for raycaster and oculus controls -->
