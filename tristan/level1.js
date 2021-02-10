@@ -20,3 +20,11 @@ AFRAME.registerComponent('triggerlistener', {
     });
   }
 });
+
+// determine which direction user is facing
+AFRAME.registerComponent('rotation-reader', {
+  tick: function () {
+    let camrot = document.querySelector('[camera]').getAttribute('rotation').y;
+    console.log(Math.abs(camrot % 360));
+  }
+});
