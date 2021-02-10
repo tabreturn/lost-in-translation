@@ -1,7 +1,7 @@
 // blueDot by @jquery404, @tabreturn, @andre, @kun, @hiroshika
 // app.js
 const https = require('https');
-const http = require('http')
+const http = require('http');
 const fs = require('fs');
 const express = require('express');
 
