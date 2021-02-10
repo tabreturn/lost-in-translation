@@ -7,13 +7,53 @@
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="level1.js"></script>
 </head>
+
+<script>
+var xco, yco, zco;
+
+AFRAME.registerComponent('map', {
+  init: function () {
+    var el = this.el;
+    xco = el.getAttribute('position').x;
+    yco = el.getAttribute('position').y;
+    zco = el.getAttribute('position').z;
+  }
+});
+
+AFRAME.registerComponent('triggerlistener', {
+  init: function () {
+    document.getElementById('clickme').setAttribute('position', {x: 0, y: 0.6, z: -1});
+    var el = this.el;
+
+    el.addEventListener('triggerup', function (evt) {
+      zco += 1;
+      document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
+      //el.setAttribute('visible', !el.getAttribute('visible'));
+    });
+    /*
+    el.addEventListener('triggerup', function (evt) {
+      console.log(evt)
+      document.getElementById('clickme').setAttribute('position', {x: 0, y: 0.8, z: -0.35});
+      yco += 0.01;
+      document.getElementById('map').setAttribute('position', {x: 0, y: yco, z: -0.35});
+      //el.setAttribute('visible', !el.getAttribute('visible'));
+    });
+    */
+  }
+});
+</script>
+
 <body>
   <a-scene>
     <a-sky color="#00FF00"></a-sky>
-    <a-entity laser-controls="hand: right"></a-entity>
-    <a-entity id="map" position="0 0.5 -3">
+
+<a-entity laser-controls raycaster="objects: [data-raycastable]; far: 0.8"></a-entity>
+<a-entity oculus-go-controls="hand: right" triggerlistener></a-entity>
+<a-box id="clickme" material="color: #444; shader: flat" raycastable></a-box>
+
+    <!-- map/level -->
+    <a-entity id="map" position="0 0.5 -3" map>
       <!-- floors -->
-      <a-box position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
       <a-box position="0 0 1" material="color: #FFF; shader: flat; src: texture.png"></a-box>
       <a-box position="0 0 2" material="color: #FFF; shader: flat; src: texture.png"></a-box>
       <a-box position="0 0 3" material="color: #FFF; shader: flat; src: texture.png"></a-box>
@@ -33,6 +73,9 @@
       <a-box position="0 2 2" material="color: #888"></a-box>
       <a-box position="0 2 3" material="color: #888"></a-box>
     </a-entity>
+
   </a-scene>
+});
+
 </body>
 </html>
