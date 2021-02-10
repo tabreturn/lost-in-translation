@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blueDot</title>
-</head>
-<body>
-    <div id="game"></div>
-
-    <script type="module" src="scripts/main.js"></script>
-    <script type="module">
-        import { Init } from './scripts/main.js';
-
-        window.onload = function(){
-            Init();
-        };
-
-    </script>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! - A-Frame</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity geometry="primitive: sphere; radius: 1.5"
+	 light="type: point; color: white; intensity: 2"
+         material="color: #00F; shader: flat; src: texture.png"
+         position="0 0 -5"></a-entity>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" material="color: #00F; shader: flat; src: texture.png"></a-box>
+      <!--
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      -->
+      <a-sky color="#00FF00"></a-sky>
+    </a-scene>
+  </body>
 </html>
