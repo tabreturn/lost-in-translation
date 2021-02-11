@@ -4,7 +4,7 @@ let cardinal;
 
 window.onload = () => {
   // load level 1 map at start
-  fetch('level1.html', { method: 'GET' })
+  fetch('level-1.html', { method: 'GET' })
     .then(response => response.text())
     .then(mapdata => {
       //console.log(mapdata);
@@ -22,10 +22,7 @@ AFRAME.registerComponent('map', {
     zco = el.getAttribute('position').z;
     // scale map by cubescale value
     el.setAttribute('scale', {x:cubescale, y:cubescale, z:cubescale});
-    // set camera height using cubescale value
-    let cams = document.querySelectorAll('[camera]');
-    cams[0].setAttribute('position', {y:0});
-    cams[1].setAttribute('position', {y:0});
+    el.setAttribute('position', {x:0, y:-cubescale, z:0});
   }
 });
 
@@ -38,7 +35,7 @@ function advanceOne() {
     case 'E': xco -= 1 * cubescale; break;
     default : console.log('error: invalid cardinal point');
   }
-  document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
+  document.getElementById('map').setAttribute('position', {x:xco, y:-cubescale, z:zco});
 }
 
 // listen for trigger operations
@@ -78,6 +75,7 @@ AFRAME.registerComponent('rotation-reader', {
     }
 
     document.getElementById('hud').setAttribute('value', cardinal);
+    document.getElementById('hudshadow').setAttribute('value', cardinal);
     //console.log(camrot);
   }
 });
