@@ -11,22 +11,30 @@ AFRAME.registerComponent('map', {
   }
 });
 
+function advanceOne() {
+  // 'move' player by shifting the map one unit
+  switch (cardinal) {
+    case 'N': zco += 1; break;
+    case 'S': zco -= 1; break;
+    case 'W': xco += 1; break;
+    case 'E': xco -= 1; break;
+    default : console.log('error: invalid cardinal point');
+  }
+  document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
+}
+
 // listen for trigger operations
 AFRAME.registerComponent('triggerlistener', {
   init: function () {
     // add triggerup (on release) listener
-    this.el.addEventListener('triggerup', function (evt) {
-      // 'move' player by shifting the map
-      switch (cardinal) {
-        case 'N': zco += 1; break;
-        case 'S': zco -= 1; break;
-        case 'W': xco += 1; break;
-        case 'E': xco -= 1; break;
-        default : console.log('error: invalid cardinal point');
-      }
-      document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
+    this.el.addEventListener('triggerup', e => {
+      advanceOne();
     });
   }
+});
+// keyboard alternative for triggerup for testing on pc
+this.addEventListener('onkeyup', e => {
+  if (e.keyCode == 13) advanceOne(); // code 13 is enter key
 });
 
 // determine which direction user is facing
@@ -50,6 +58,6 @@ AFRAME.registerComponent('rotation-reader', {
     }
 
     document.getElementById('hud').setAttribute('value', cardinal);
-    console.log(camrot);
+    //console.log(camrot);
   }
 });
