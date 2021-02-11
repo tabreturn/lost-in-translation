@@ -1,55 +1,103 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>movement</title>
-  <meta name="description" content="Hello, World! - A-Frame">
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="level1.js"></script>
-  <script src="lantern.js"></script>
-</head>
-<body>
-  <a-scene>
-    <a-sky color="#00FF00"></a-sky>
-    <a-entity laser-controls="hand: left"></a-entity>
-    <a-entity laser-controls="hand: right"></a-entity>
-    <!-- <a-assets>
-        <a-asset-item id="lantern-obj" src="../lantern.obj"></a-asset-item>
-        <a-asset-item id="lantern-mtl" src="../lantern.mtl"></a-asset-item>
-    </a-assets>
-    <a-entity id='lantern' scale='.1 .1 .1' position='0 1.5 -3' obj-model="obj: #lantern-obj; mtl: #lantern-mtl"></a-entity> -->
-    <a-assets>
-        <a-asset-item id="tree" src="../lantern.gltf"></a-asset-item>
-      </a-assets>
-    
-      <a-entity scale='.01 .01 .01' position='0 1.5 -3' gltf-model="#tree"></a-entity>
-    <a-entity light="type: point; color: #FFF; intensity: 0.3;" position="0 1.3 -3"></a-entity>
 
-    <!-- <a-light id="lantern" type="point" color="blue" position="0 0 0"></a-light> -->
-    <!-- <a-entity light="type: point; intensity: 0.75; distance: 50; decay: 2"
-    position="0 0 0"></a-entity> -->
-    <a-entity id="map" position="0 0.5 -3">
-      <!-- floors -->
-      <a-box position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-      <a-box position="0 0 1" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-      <a-box position="0 0 2" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-      <a-box position="0 0 3" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-      <!-- left walls -->
-      <a-box position="-1 1 0" material="color: #00F"></a-box>
-      <a-box position="-1 1 1" material="color: #00F"></a-box>
-      <a-box position="-1 1 2" material="color: #00F"></a-box>
-      <a-box position="-1 1 3" material="color: #00F"></a-box>
-      <!-- right walls -->
-      <a-box position="1 1 0" material="color: #F00"></a-box>
-      <a-box position="1 1 1" material="color: #F00"></a-box>
-      <a-box position="1 1 2" material="color: #F00"></a-box>
-      <a-box position="1 1 3" material="color: #F00"></a-box>
-      <!-- ceilings -->
-      <a-box position="0 2 0" material="color: #888"></a-box>
-      <a-box position="0 2 1" material="color: #888"></a-box>
-      <a-box position="0 2 2" material="color: #888"></a-box>
-      <a-box position="0 2 3" material="color: #888"></a-box>
-    </a-entity>
-  </a-scene>
+<head>
+    <meta charset="utf-8">
+    <title>movement</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="level1.js"></script>
+    <!-- <script src="lantern.js"></script> -->
+    <script>
+        AFRAME.registerComponent('custom-controls', {
+            schema: {
+                hand: { default: '' },
+                model: { default: '' }
+            },
+            init: function () {
+                var el = this.el;
+                var fire = document.getElementById('fire')
+                var lantern = document.getElementById('lantern')
+                el.appendChild(fire)
+                el.appendChild(lantern)
+                // var light = document.getElementById('light')
+                // el.appendChild(light)
+
+                // el.addEventListener('xbuttondown', function (evt) {
+                //     el.setAttribute('visible', !el.getAttribute('visible'));
+                // });
+            },
+            update: function () {
+                var hand = this.data.hand;
+                var el = this.el;
+                var controlConfiguration = {
+                    hand: hand,
+                    model: false,
+                    orientationOffset: { x: 0, y: 0, z: hand === 'left' ? 90 : -90 },
+                };
+
+
+                // Build on top of controller components.
+                el.setAttribute('vive-controls', controlConfiguration);
+                el.setAttribute('oculus-touch-controls', controlConfiguration);
+                el.setAttribute('daydream-controls', controlConfiguration);
+                el.setAttribute('gearvr-controls', controlConfiguration);
+                el.setAttribute('windows-motion-controls', controlConfiguration);
+                el.setAttribute('oculus-go-controls', controlConfiguration);
+                // Set a model.
+                el.setAttribute('gltf-model', this.data.model);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <a-scene light="defaultLightsEnabled: false">
+        <a-sky color="#00FF00"></a-sky>
+
+        <a-entity id="right-hand" custom-controls="hand: right"></a-entity>
+
+        <a-assets>
+            <a-asset-item id="fire-item" src="../fire_animation/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-entity id='fire' scale='0.01 0.01 0.01' position='0 -0.04 0' gltf-model="#fire-item" animation-mixer>
+        </a-entity>
+
+        <a-assets>
+            <a-asset-item id="lantern-item" src="../old_lantern/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-entity id="lantern" scale='0.15 0.15 0.15' gltf-model="#lantern-item"></a-entity>
+
+        <a-entity id="light" position='0 0 0' light="type: spot; color: #FFF; intensity: 2;"></a-entity>
+        <!-- <a-entity id="light"  area-light="intensity:4; width:1; height:1; color: #FFFFFF;"></a-entity> -->
+
+
+        <!-- <a-entity id="test_light" light="type: point; color: #FFF; intensity: 1;"></a-entity> -->
+
+        <a-entity id="map" position="0 0.5 -3">
+            <!-- floors -->
+            <a-box position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+            <a-box position="0 0 1" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+            <a-box position="0 0 2" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+            <a-box position="0 0 3" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+            <!-- left walls -->
+            <a-box position="-1 1 0" material="color: #00F"></a-box>
+            <a-box position="-1 1 1" material="color: #00F"></a-box>
+            <a-box position="-1 1 2" material="color: #00F"></a-box>
+            <a-box position="-1 1 3" material="color: #00F"></a-box>
+            <!-- right walls -->
+            <a-box position="1 1 0" material="color: #F00"></a-box>
+            <a-box position="1 1 1" material="color: #F00"></a-box>
+            <a-box position="1 1 2" material="color: #F00"></a-box>
+            <a-box position="1 1 3" material="color: #F00"></a-box>
+            <!-- ceilings -->
+            <a-box position="0 2 0" material="color: #888"></a-box>
+            <a-box position="0 2 1" material="color: #888"></a-box>
+            <a-box position="0 2 2" material="color: #888"></a-box>
+            <a-box position="0 2 3" material="color: #888"></a-box>
+        </a-entity>
+    </a-scene>
 </body>
+
 </html>

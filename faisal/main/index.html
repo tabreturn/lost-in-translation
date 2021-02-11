@@ -25,6 +25,39 @@
             ball.body.applyLocalImpulse(velocity.scale(50), new CANNON.Vec3(0, 0, 0));
         }
 
+        AFRAME.registerComponent('intersection-spawn', {
+          schema: {
+            default: '',
+            parse: AFRAME.utils.styleParser.parse
+          },
+    
+          init: function () {
+            const data = this.data;
+            const el = this.el;
+    
+            el.addEventListener(data.event, evt => {
+              // Create element.
+              const spawnEl = document.createElement('a-entity');
+    
+              // Snap intersection point to grid and offset from center.
+              spawnEl.setAttribute('position', evt.detail.intersection.point);
+              spawnEl.setAttribute('scale', {x: Math.random()*10, y: Math.random()*10, z: Math.random()*10});
+              spawnEl.setAttribute('dynamic-body', 'mass: '+Math.random()*10);
+              
+    
+              // Set components and properties.
+              Object.keys(data).forEach(name => {
+                if (name === 'event') { return; }
+                AFRAME.utils.entity.setComponentProperty(spawnEl, name, data[name]);
+              });
+    
+              // Append to scene.
+              el.sceneEl.appendChild(spawnEl);
+            });
+          }
+        });
+
+
         AFRAME.registerComponent('throwing-hand', {
             dependencies: ['dynamic-body', 'vive-controls'],
             init: function () {
@@ -85,10 +118,19 @@
       <a-assets>
         <img id="groundTexture" src="images/brick.jpg">
         <img id="skyTexture" src="images/darksky.jpg">
+        <a-mixin id="voxel"
+        dynamic-body="mass: 1"
+        geometry="primitive: box; height: 0.5; width: 0.5; depth: 0.5"
+        material="shader: standard"
+        random-color
+        snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5"
+      ></a-mixin>
       </a-assets>
 
 
       <a-entity camera look-controls wasd-controls></a-entity>
+
+      <!-- <a-entity controller-cursor intersection-spawn="event: click; mixin: voxel" static-body sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity> -->
       
       <a-entity
         id="leftController"
@@ -96,7 +138,7 @@
         vive-controls="hand: left"
         super-hands hand-controls="hand: left"
         sphere-collider="objects: .throwable"
-        grab
+        intersection-spawn="event: click; mixin: voxel"
       ></a-entity>
       <a-entity
         id="rightController"
@@ -111,9 +153,6 @@
       <a-sphere class="throwable" dynamic-body position="0 0.25 -0.5" radius="0.10" color="green"></a-sphere>
       <a-sphere class="throwable" dynamic-body position="0.25 0.25 -0.5" radius="0.10" color="yellow"></a-sphere>
       <a-sphere class="throwable" dynamic-body position="-0.25 0.25 -0.5" radius="0.10" color="yellow"></a-sphere>
-
-
-
       <a-sphere class="throwable" dynamic-body position="-0.651 1.8 -0.5" radius="0.10" color="yellow"></a-sphere>
       <a-sphere class="throwable" dynamic-body position="-1.25 1.8 -0.5" radius="0.10" color="green"></a-sphere>
       <a-sphere class="throwable" dynamic-body position="0.96 1.6 -0.5" radius="0.10" color="yellow"></a-sphere>
