@@ -1,6 +1,17 @@
 let xco, yco, zco;
 let cardinal;
 
+window.onload = () => {
+  // load level 1 map at start
+  fetch('level1.html', { method: 'GET' })
+    .then(response => response.text())
+    .then(mapdata => {
+      console.log(mapdata);
+      var str = mapdata;
+      document.getElementById('map').innerHTML = str;
+    });
+};
+
 AFRAME.registerComponent('map', {
   // retrieve map x, y, z coords at start
   init: function () {

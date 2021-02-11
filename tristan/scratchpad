@@ -23,3 +23,14 @@ AFRAME.registerComponent('raycaster-listen', {
 <a-entity id="raycaster" raycaster></a-entity>
 <a-entity laser-controls="hand: right"></a-entity>
 <a-box raycaster-listen position="0 0.5 -3" material="color: #444; shader: flat"></a-box>
+
+---
+
+AFRAME.registerComponent('testerbox', {
+  init: function () {
+    console.log('init');
+  },
+  tick: function () {
+    console.log('tick');
+  }
+});

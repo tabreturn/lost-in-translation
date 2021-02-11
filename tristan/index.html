@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Level 1</title>
+  <title>Blue Dot Studios</title>
   <link rel="icon" href="https://aframe.io/images/aframe-logo-192.png" />
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="level1.js"></script>
+  <script src="init.js"></script>
 </head>
 
 <body>
@@ -14,36 +14,14 @@
 
 <!-- WIP/TESTS/SCRATCHPAD -->
 <script>
-/*
-AFRAME.registerComponent('testerbox', {
-  init: function () {
-    console.log('init');
-  },
-  tick: function () {
-    console.log('tick');
-  }
-});
-*/
-window.onload = () => {
-
-
-  fetch('level1.html', { method: 'GET' })
-    .then(response => response.text())
-    .then(response => {
-      console.log(response);
-      var str = response;
-      document.getElementById('map').innerHTML = str;
-    });
-};
-
+//
 </script>
-<!--<a-box id="testerbox" testerbox position="0 0 1" material="color: #333; shader: flat"></a-box>-->
-
+<!-- -->
 
     <!-- set camera elevation (y-coors) and add cursor and hud (optional extras) -->
     <a-entity camera look-controls position="0 1.5 0">
-      <a-cursor></a-cursor>
-      <a-text id="hud" value="hud" position="-0.2 0 -1" color="#000" width="5" anchor="left"></a-text>
+      <a-cursor visible="false"></a-cursor>
+      <a-text visible="true" id="hud" value="..." position="-0.2 0 -1" color="#000"></a-text>
     </a-entity>
 
     <!-- add entities for rotation reader, raycaster, oculus controls -->
@@ -52,9 +30,7 @@ window.onload = () => {
     <a-entity oculus-go-controls="hand: right" triggerlistener></a-entity>
 
     <!-- map/level container -->
-    <a-entity id="map" position="0 0.5 -3" map></a-entity>
-
+    <a-entity id="map" position="0 0.5 0" map></a-entity>
   </a-scene>
-
 </body>
 </html>
