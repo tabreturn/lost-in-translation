@@ -12,17 +12,16 @@
   <a-scene>
     <a-sky color="#00FF00"></a-sky>
 
-<!-- WIP, TESTS -->
+<!-- WIP/TESTS/SCRATCHPAD -->
 <script>
 </script>
-
-<a-entity camera look-controls position="0 1.5 0">
-  <a-cursor></a-cursor>
-  <a-text id="hud" value="hud" position="-0.2 0 -1" color="#000" width="5" anchor="left"></a-text>
-</a-entity>
-
-
 <a-box id="clickme" material="color: #444; shader: flat" raycastable></a-box>
+
+    <!-- set camera elevation (y-coors) and add cursor and hud (optional extras) -->
+    <a-entity camera look-controls position="0 1.5 0">
+      <a-cursor></a-cursor>
+      <a-text id="hud" value="hud" position="-0.2 0 -1" color="#000" width="5" anchor="left"></a-text>
+    </a-entity>
 
     <!-- add entities for rotation reader, raycaster, oculus controls -->
     <a-entity rotation-reader></a-entity>
@@ -30,7 +29,7 @@
     <a-entity oculus-go-controls="hand: right" triggerlistener></a-entity>
 
     <!-- map/level -->
-    <a-entity id="map" position="10 0.5 -3" map>
+    <a-entity id="map" position="0 0.5 -3" map>
       <!-- floors -->
       <a-box position="0 0 1" material="color: #FFF; shader: flat; src: textures/texture.png"></a-box>
       <a-box position="0 0 2" material="color: #FFF; shader: flat; src: textures/texture.png"></a-box>

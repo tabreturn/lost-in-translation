@@ -1,4 +1,5 @@
 let xco, yco, zco;
+let cardinal;
 
 AFRAME.registerComponent('map', {
   // retrieve map x, y, z coords at start
@@ -15,7 +16,14 @@ AFRAME.registerComponent('triggerlistener', {
   init: function () {
     // add triggerup (on release) listener
     this.el.addEventListener('triggerup', function (evt) {
-      zco += 1;
+      // 'move' player by shifting the map
+      switch (cardinal) {
+        case 'N': zco += 1; break;
+        case 'S': zco -= 1; break;
+        case 'W': xco += 1; break;
+        case 'E': xco -= 1; break;
+        default : console.log('error: invalid cardinal point');
+      }
       document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
     });
   }
@@ -25,23 +33,22 @@ AFRAME.registerComponent('triggerlistener', {
 AFRAME.registerComponent('rotation-reader', {
   tick: function () {
     let camrot = document.querySelector('[camera]').getAttribute('rotation').y % 360;
-    let cardinal;
-
+    // determine if the player is facing N, S, W, E
     if (camrot >= 0) {
       if (camrot < 45) cardinal = 'N';
       else if (camrot < 135) cardinal = 'W';
       else if (camrot < 225) cardinal = 'S';
       else if (camrot < 360) cardinal = 'E';
-      else cardinal = camrot;
+      else cardinal = camrot; // fall-through case logs rotation value in degrees
     }
     else {
       if (camrot > -45) cardinal = 'N';
       else if (camrot > -135) cardinal = 'E';
       else if (camrot > -225) cardinal = 'S';
       else if (camrot > -360) cardinal = 'W';
-      else cardinal = camrot;
+      else cardinal = camrot; // fall-through case logs rotation value in degrees
     }
-    
+
     document.getElementById('hud').setAttribute('value', cardinal);
     console.log(camrot);
   }
