@@ -36,6 +36,9 @@ School of Design, University of Auckland, New Zealand
   * super hands: https://github.com/wmurphyrd/aframe-super-hands-component
   * augmented reality: https://github.com/jeromeetienne/AR.js#augmented-reality-for-the-web-in-less-than-10-lines-of-html
 
+* lights:
+  * codepen demo: https://codepen.io/dirkk0/pen/rwggLd
+
 ## to-do
 
 - [x] create movement engine

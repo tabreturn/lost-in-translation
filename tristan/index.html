@@ -11,13 +11,15 @@
 
 <body>
   <a-scene>
-    <a-sky color="#00FF00"></a-sky>
+    <a-sky color="#FFF"></a-sky>
 
-    <!-- WIP/TESTS/SCRATCHPAD -->
-    <script>
-    /* */
-    </script>
-    <!-- -->
+
+<!-- WIP/TESTS/SCRATCHPAD -->
+<script>
+/* */
+</script>
+<!-- -->
+
 
     <!-- add a cursor and hud to a camera (optional extras) -->
     <a-entity camera look-controls>
@@ -25,6 +27,8 @@
       <!-- draw two hud layers (for drop-shadow effect) -->
       <a-text visible="true" id="hudshadow" value="..." position="-0.05 -0.015 -1" color="#000" width="2"></a-text>
       <a-text visible="true" id="hud" value="..." position="-0.055 -0.01 -1" color="#FFF" width="2"></a-text>
+      <!-- add lamp (light attributes calibrated in init.js) -->
+      <a-light lamp id="lamp" type="point" color="#FB5" intensity="0.5" penumbra="0" distance="30" decay="2.5"></a-light>
     </a-entity>
 
     <!-- add entities for rotation reader, raycaster, oculus controls -->
@@ -33,11 +37,9 @@
     <a-entity id="right-controller" oculus-go-controls="hand: right" triggerlistener></a-entity>
     <!--<a-entity id="right-hand" custom-controls="hand: right"></a-entity>-->
 
-    <!-- lighting -->
-    <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-controller"></a-entity>
-
     <!-- map/level container -->
-    <a-entity map id="map"></a-entity>
+    <a-entity map id="map">
+    </a-entity>
   </a-scene>
 </body>
 

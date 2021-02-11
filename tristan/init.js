@@ -26,6 +26,17 @@ AFRAME.registerComponent('map', {
   }
 });
 
+AFRAME.registerComponent('lamp', {
+  // set lamp values
+  init: function () {
+    let el = this.el;
+    el.setAttribute('intensity', el.getAttribute('intensity')*cubescale);
+    el.setAttribute('penumbra', el.getAttribute('penumbra')*cubescale);
+    el.setAttribute('distance', el.getAttribute('distance')*cubescale);
+    el.setAttribute('decay', el.getAttribute('decay')*cubescale);
+  }
+});
+
 function advanceOne() {
   // 'move' player by shifting the map
   switch (cardinal) {
