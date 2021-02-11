@@ -1,17 +1,18 @@
 // blueDot by @jquery404, @tabreturn, @andre, @kun, @hiroshika
 // app.js
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const express = require('express');
 
 const app = express();
-let randomColor = require('randomcolor');
-//const uuid = require('uuid');
 
 const options = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
-  };
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
+
+app.use('/images', express.static(__dirname + '/assets/gfx'))
 
 //middlewares
 app.use(express.static(__dirname));
@@ -35,3 +36,4 @@ app.get('/vr', (req, res) =>{
 //   }).listen(8000);
 
 https.createServer(options, app).listen(8000);
+http.createServer(app).listen(8080);

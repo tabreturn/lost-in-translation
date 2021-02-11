@@ -1,21 +1,111 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blueDot</title>
-</head>
-<body>
-    <div id="game"></div>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A-Frame Ball Throw</title>
+    <meta name="description" content="A-Frame Ball Throw" />
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <!-- Moon gravity -->
+    <a-scene physics="gravity: -1.6" renderer="antialias: true">
+      <!-- Player -->
+      <a-entity camera look-controls wasd-controls></a-entity>
+      <a-entity
+        id="leftController"
+        static-body="shape: sphere; sphereRadius: 0.02;"
+        laser-controls="hand: left"
+        sphere-collider="objects: .throwable"
+        grab
+      ></a-entity>
+      <a-entity
+        id="rightController"
+        static-body="shape: sphere; sphereRadius: 0.02;"
+        laser-controls="hand: right"
+        sphere-collider="objects: .throwable"
+        grab
+      ></a-entity>
 
-    <script type="module" src="scripts/main.js"></script>
-    <script type="module">
-        import { Init } from './scripts/main.js';
+      <!-- Ammo -->
+      <a-sphere
+        class="throwable"
+        dynamic-body
+        position="0 0.25 -0.5"
+        radius="0.10"
+        color="green"
+      ></a-sphere>
+      <a-sphere
+        class="throwable"
+        dynamic-body
+        position="0.25 0.25 -0.5"
+        radius="0.10"
+        color="green"
+      ></a-sphere>
+      <a-sphere
+        class="throwable"
+        dynamic-body
+        position="-0.25 0.25 -0.5"
+        radius="0.10"
+        color="green"
+      ></a-sphere>
 
-        window.onload = function(){
-            Init();
-        };
+      <!--Table to hold the targets -->
+      <a-box
+        static-body
+        position="2 1 0"
+        width="2"
+        height="0.1"
+        depth="2"
+        color="grey"
+      ></a-box>
 
-    </script>
-</body>
+      <!-- The targets (will be generated with D3) -->
+      <a-entity id="boxes"></a-entity>
+
+      <!-- Ground -->
+      <a-plane
+        static-body
+        rotation="-90 0 0"
+        width="10"
+        height="10"
+        color="black"
+      ></a-plane>
+
+      <!-- Sky -->
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+
+  <script>
+    const colorScale = d3.scaleSequential(d3.interpolatePlasma);
+    const dataset = [];
+  
+    for (let i = 10; i > 0; i--) {
+      dataset.push(i);
+    }
+  
+    let boxes = d3.select('#boxes');
+    boxes.selectAll('a-box')
+         .data(dataset)
+         .enter()
+         .append('a-box')
+         .attr('height', '0.1')
+         .attr('width', function(d, i) {
+           return String(0.1 * d);
+         })
+         .attr('depth', function(d, i) {
+           return String(0.1 * d);
+         })
+         .attr('color', function(d, i) {
+           return colorScale(i / 10);
+         })
+         .attr('position', function(d, i) {
+           return '2 ' + (i * 0.1 + 1.1) + ' 0';
+         })
+         .attr('dynamic-body', '');
+  </script>
 </html>
