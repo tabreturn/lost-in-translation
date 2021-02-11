@@ -22,6 +22,7 @@
                 var lantern = document.getElementById('lantern')
                 el.appendChild(fire)
                 el.appendChild(lantern)
+                el.setAttribute('light', { type: 'spot', color: '#FFF', intensity: '1', decay: '0.1' })
                 // el.addEventListener('xbuttondown', function (evt) {
                 //     el.setAttribute('visible', !el.getAttribute('visible'));
                 // });
@@ -45,13 +46,17 @@
                 el.setAttribute('oculus-go-controls', controlConfiguration);
                 // Set a model.
                 el.setAttribute('gltf-model', this.data.model);
+            },
+            remove: function () {
+                this.el.removeAttribute('light')
             }
         });
     </script>
 </head>
 
 <body>
-    <a-scene light="defaultLightsEnabled: false">
+    <a-scene>
+        <a-entity camera look-controls position="0 15 -3"></a-entity>
         <a-sky color="#00FF00"></a-sky>
 
         <a-entity id="right-hand" custom-controls="hand: right"></a-entity>
@@ -67,7 +72,7 @@
         </a-assets>
         <a-entity id="lantern" scale='0.15 0.15 0.15' gltf-model="#lantern-item"></a-entity>
 
-        <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-hand"></a-entity>
+        <!-- <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-hand"></a-entity> -->
 
         <a-assets>
             <a-mixin id="beveled-square"
@@ -88,7 +93,7 @@
         <!-- <a-entity ui-rotary></a-entity> -->
 
 
-        <a-entity id="map" position="0 0.5 -3">
+        <a-entity id="map" position="0 0.5 -3" scale='15 15 15'>
             <!-- floors -->
             <a-box position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
             <a-box position="0 0 1" material="color: #FFF; shader: flat; src: texture.png"></a-box>
