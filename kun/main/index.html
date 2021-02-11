@@ -21,8 +21,6 @@
                 var lantern = document.getElementById('lantern')
                 el.appendChild(fire)
                 el.appendChild(lantern)
-                // var light = document.getElementById('light')
-                // el.appendChild(light)
 
                 // el.addEventListener('xbuttondown', function (evt) {
                 //     el.setAttribute('visible', !el.getAttribute('visible'));
@@ -69,11 +67,7 @@
         </a-assets>
         <a-entity id="lantern" scale='0.15 0.15 0.15' gltf-model="#lantern-item"></a-entity>
 
-        <a-entity id="light" position='0 0 0' light="type: spot; color: #FFF; intensity: 2;"></a-entity>
-        <!-- <a-entity id="light"  area-light="intensity:4; width:1; height:1; color: #FFFFFF;"></a-entity> -->
-
-
-        <!-- <a-entity id="test_light" light="type: point; color: #FFF; intensity: 1;"></a-entity> -->
+        <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-hand"></a-entity>
 
         <a-entity id="map" position="0 0.5 -3">
             <!-- floors -->
