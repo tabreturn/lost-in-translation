@@ -35,7 +35,7 @@ function advanceOne() {
     case 'E': xco -= 1 * cubescale; break;
     default : console.log('error: invalid cardinal point');
   }
-  document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
+  document.getElementById('map').setAttribute('position', {x:xco, y:-cubescale, z:zco});
 }
 
 // listen for trigger operations
