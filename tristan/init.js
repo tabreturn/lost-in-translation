@@ -1,12 +1,13 @@
 let xco, yco, zco;
+let cubescale = 15;
 let cardinal;
 
 window.onload = () => {
   // load level 1 map at start
-  fetch('level1.html', { method: 'GET' })
+  fetch('level-1.html', { method: 'GET' })
     .then(response => response.text())
     .then(mapdata => {
-      console.log(mapdata);
+      //console.log(mapdata);
       var str = mapdata;
       document.getElementById('map').innerHTML = str;
     });
@@ -19,19 +20,22 @@ AFRAME.registerComponent('map', {
     xco = el.getAttribute('position').x;
     yco = el.getAttribute('position').y;
     zco = el.getAttribute('position').z;
+    // scale map by cubescale value
+    el.setAttribute('scale', {x:cubescale, y:cubescale, z:cubescale});
+    el.setAttribute('position', {x:0, y:-cubescale, z:0});
   }
 });
 
 function advanceOne() {
   // 'move' player by shifting the map
   switch (cardinal) {
-    case 'N': zco += 1; break;
-    case 'S': zco -= 1; break;
-    case 'W': xco += 1; break;
-    case 'E': xco -= 1; break;
+    case 'N': zco += 1 * cubescale; break;
+    case 'S': zco -= 1 * cubescale; break;
+    case 'W': xco += 1 * cubescale; break;
+    case 'E': xco -= 1 * cubescale; break;
     default : console.log('error: invalid cardinal point');
   }
-  document.getElementById('map').setAttribute('position', {x: xco, y: yco, z: zco});
+  document.getElementById('map').setAttribute('position', {x:xco, y:-cubescale, z:zco});
 }
 
 // listen for trigger operations
@@ -71,6 +75,7 @@ AFRAME.registerComponent('rotation-reader', {
     }
 
     document.getElementById('hud').setAttribute('value', cardinal);
+    document.getElementById('hudshadow').setAttribute('value', cardinal);
     //console.log(camrot);
   }
 });

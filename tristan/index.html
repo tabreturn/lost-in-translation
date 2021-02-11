@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Lost in Translation ... by Blue Dot Studios</title>
@@ -12,25 +13,79 @@
   <a-scene>
     <a-sky color="#00FF00"></a-sky>
 
-<!-- WIP/TESTS/SCRATCHPAD -->
-<script>
-//
-</script>
-<!-- -->
+    <!-- WIP/TESTS/SCRATCHPAD -->
+    <script>
+    /*
+        AFRAME.registerComponent('custom-controls', {
+            schema: {
+                hand: { default: '' },
+                model: { default: '' }
+            },
+            init: function () {
+                var el = this.el;
+                var fire = document.getElementById('fire')
+                var lantern = document.getElementById('lantern')
+                el.appendChild(fire)
+                el.appendChild(lantern)
+                // el.addEventListener('xbuttondown', function (evt) {
+                //     el.setAttribute('visible', !el.getAttribute('visible'));
+                // });
+            },
+            update: function () {
+                var hand = this.data.hand;
+                var el = this.el;
+                var controlConfiguration = {
+                    hand: hand,
+                    model: false,
+                    orientationOffset: { x: 0, y: 0, z: hand === 'left' ? 90 : -90 },
+                };
 
-    <!-- set camera elevation (y-coors) and add cursor and hud (optional extras) -->
-    <a-entity camera look-controls position="0 1.5 0">
+
+                // Build on top of controller components.
+                el.setAttribute('vive-controls', controlConfiguration);
+                el.setAttribute('oculus-touch-controls', controlConfiguration);
+                el.setAttribute('daydream-controls', controlConfiguration);
+                el.setAttribute('gearvr-controls', controlConfiguration);
+                el.setAttribute('windows-motion-controls', controlConfiguration);
+                el.setAttribute('oculus-go-controls', controlConfiguration);
+                // Set a model.
+                el.setAttribute('gltf-model', this.data.model);
+            }
+        });
+    */
+    </script>
+    <!-- -->
+    <!--
+    <a-assets>
+      <a-asset-item id="fire-item" src="../fire_animation/scene.gltf"></a-asset-item>
+      <a-asset-item id="lantern-item" src="../old_lantern/scene.gltf"></a-asset-item>
+
+    </a-assets>
+    <a-entity id='fire' scale='0.01 0.01 0.01' position='0 -0.04 0' gltf-model="#fire-item" animation-mixer>
+    </a-entity>
+    <a-entity id="lantern" scale='0.15 0.15 0.15' gltf-model="#lantern-item"></a-entity>
+  -->
+
+    <!-- add a cursor and hud to a camera (optional extras) -->
+    <a-entity camera look-controls>
       <a-cursor visible="false"></a-cursor>
-      <a-text visible="true" id="hud" value="..." position="-0.2 0 -1" color="#000"></a-text>
+      <!-- draw two hud layers (for drop-shadow effect) -->
+      <a-text visible="true" id="hudshadow" value="..." position="-0.05 -0.015 -1" color="#000" width="2"></a-text>
+      <a-text visible="true" id="hud" value="..." position="-0.055 -0.01 -1" color="#FFF" width="2"></a-text>
     </a-entity>
 
     <!-- add entities for rotation reader, raycaster, oculus controls -->
     <a-entity rotation-reader></a-entity>
     <a-entity laser-controls raycaster="objects: [data-raycastable]; far: 0.8"></a-entity>
-    <a-entity oculus-go-controls="hand: right" triggerlistener></a-entity>
+    <a-entity id="right-controller" oculus-go-controls="hand: right" triggerlistener></a-entity>
+    <!--<a-entity id="right-hand" custom-controls="hand: right"></a-entity>-->
+
+    <!-- lighting -->
+    <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-controller"></a-entity>
 
     <!-- map/level container -->
-    <a-entity id="map" position="0 0.5 0" map></a-entity>
+    <a-entity map id="map"></a-entity>
   </a-scene>
 </body>
+
 </html>
