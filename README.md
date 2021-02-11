@@ -8,6 +8,9 @@ A WebXR game made with A-Frame
 Showcased at [International XR Workshop 2021](https://sites.google.com/view/xrworkshop/home), 9-12 February @
 School of Design, University of Auckland, New Zealand
 
+![](screenshot.png)  
+*work in progress screenshot*
+
 # useful resources
 
 * A-Frame is a three.js framework that adopts an Entity-Component-System (ECS) architecture:
