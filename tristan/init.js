@@ -78,6 +78,7 @@ AFRAME.registerComponent('rotation-reader', {
     }
 
     document.getElementById('hud').setAttribute('value', cardinal);
+    document.getElementById('hudshadow').setAttribute('value', cardinal);
     //console.log(camrot);
   }
 });
