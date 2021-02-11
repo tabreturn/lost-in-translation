@@ -4,7 +4,7 @@ let cardinal;
 
 window.onload = () => {
   // load level 1 map at start
-  fetch('level1.html', { method: 'GET' })
+  fetch('level-1.html', { method: 'GET' })
     .then(response => response.text())
     .then(mapdata => {
       //console.log(mapdata);
