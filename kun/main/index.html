@@ -7,6 +7,8 @@
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <!-- Include component script into your project along with A-Frame. -->
+    <script src="https://rawgit.com/caseyyee/aframe-ui-widgets/master/dist/aframe-ui-widgets.min.js"></script>
     <script src="level1.js"></script>
     <!-- <script src="lantern.js"></script> -->
     <script>
@@ -21,7 +23,6 @@
                 var lantern = document.getElementById('lantern')
                 el.appendChild(fire)
                 el.appendChild(lantern)
-
                 // el.addEventListener('xbuttondown', function (evt) {
                 //     el.setAttribute('visible', !el.getAttribute('visible'));
                 // });
@@ -69,6 +70,25 @@
 
         <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-hand"></a-entity>
 
+        <a-assets>
+            <a-mixin id="beveled-square"
+                geometry="primitive: cone; radiusTop: 0.15; radiusBottom: 0.19; height: 0.02; segmentsRadial: 4; segmentsHeight: 1"
+                rotation="0 45 0"></a-mixin>
+            <a-mixin id="square" geometry="primitive: box; width: 0.18; height: 0.025; depth: 0.18;"
+                position="0 0.02 0"></a-mixin>
+            <a-mixin id="blue" material="color: #1E2768;"></a-mixin>
+            <a-mixin id="darkgreen" material="color: #22FF90;"></a-mixin>
+            <a-mixin id="yellow" material="color: #FFF88E;"></a-mixin>
+            <a-mixin id="offset" position="0 0.01 0"></a-mixin>
+        </a-assets>
+
+        <a-entity position="0 1.5 0" id="button"
+            ui-button="base: beveled-square, blue; top: square, darkgreen; pressed: yellow, offset">
+        </a-entity>
+        <!-- <a-entity ui-button></a-entity> -->
+        <!-- <a-entity ui-rotary></a-entity> -->
+
+
         <a-entity id="map" position="0 0.5 -3">
             <!-- floors -->
             <a-box position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
@@ -92,6 +112,15 @@
             <a-box position="0 2 3" material="color: #888"></a-box>
         </a-entity>
     </a-scene>
+    <script>
+        var mybutton = document.getElementById('button')
+        if (mybutton) {
+            mybutton.addEventListener('pressed', function () {
+                // do stuff here.
+                console.log("shuai")
+            });
+        }
+    </script>
 </body>
 
 </html>
