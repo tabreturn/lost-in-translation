@@ -22,10 +22,7 @@ AFRAME.registerComponent('map', {
     zco = el.getAttribute('position').z;
     // scale map by cubescale value
     el.setAttribute('scale', {x:cubescale, y:cubescale, z:cubescale});
-    // set camera height using cubescale value
-    let cams = document.querySelectorAll('[camera]');
-    cams[0].setAttribute('position', {y:cubescale});
-    cams[1].setAttribute('position', {y:cubescale});
+    el.setAttribute('position', {x:0, y:-cubescale, z:0});
   }
 });
 
