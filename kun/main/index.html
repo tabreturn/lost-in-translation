@@ -8,6 +8,7 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://rawgit.com/caseyyee/aframe-ui-widgets/master/dist/aframe-ui-widgets.min.js"></script>
+
     <script src="level1.js"></script>
     <!-- <script src="lantern.js"></script> -->
     <script>
@@ -22,16 +23,21 @@
                 var lantern = document.getElementById('lantern')
                 el.appendChild(fire)
                 el.appendChild(lantern)
-                // el.addEventListener('xbuttondown', function (evt) {
-                //     el.setAttribute('visible', !el.getAttribute('visible'));
-                // });
 
                 el.setAttribute('light', {
+                    id: 'light',
                     type: 'spot',
-                    distance: 0,
+                    distance: 5,
+                    decay: 2,
                     intensity: 1,
-                    color: '#FFF'
-                }, true);
+                    color: '#ff844e',
+                    penumbra: 0.3,
+                }, true)
+                el.setAttribute('animation', {
+                    begin: "flash", attribute: "intensity", delay: "30", from: "0", to: "1", dur: "50", loop: "true"
+                }, true)
+                document.querySelector('#light a-light').emit('flash');
+
             },
             update: function () {
                 var hand = this.data.hand;
@@ -41,7 +47,6 @@
                     model: false,
                     orientationOffset: { x: 0, y: 0, z: hand === 'left' ? 90 : -90 },
                 };
-
 
                 // Build on top of controller components.
                 el.setAttribute('vive-controls', controlConfiguration);
@@ -72,7 +77,16 @@
 
         <a-entity id="lantern" scale='0.15 0.15 0.15' gltf-model="#lantern-item"></a-entity>
 
-        <a-assets>
+        <!-- <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-controller">
+        </a-entity> -->
+        <!-- <a-entity id="light">
+            <a-light type="point" intensity="1" decay="0.1" color="#ff844e" target="#right-controller">
+                <a-animation begin="flash" attribute="intensity" delay="30" from="0" to="1" dur="50" loop="true">
+                </a-animation>
+            </a-light>
+        </a-entity> -->
+
+        <!-- <a-assets>
             <a-mixin id="beveled-square"
                 geometry="primitive: cone; radiusTop: 0.15; radiusBottom: 0.19; height: 0.02; segmentsRadial: 4; segmentsHeight: 1"
                 rotation="0 45 0"></a-mixin>
@@ -86,7 +100,7 @@
 
         <a-entity position="0 1.5 0" id="button"
             ui-button="base: beveled-square, blue; top: square, darkgreen; pressed: yellow, offset">
-        </a-entity>
+        </a-entity> -->
         <!-- <a-entity ui-button></a-entity> -->
         <!-- <a-entity ui-rotary></a-entity> -->
 
