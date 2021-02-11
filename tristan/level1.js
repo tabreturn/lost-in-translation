@@ -12,7 +12,7 @@ AFRAME.registerComponent('map', {
 });
 
 function advanceOne() {
-  // 'move' player by shifting the map one unit
+  // 'move' player by shifting the map
   switch (cardinal) {
     case 'N': zco += 1; break;
     case 'S': zco -= 1; break;
@@ -32,9 +32,11 @@ AFRAME.registerComponent('triggerlistener', {
     });
   }
 });
-// keyboard alternative for triggerup for testing on pc
-this.addEventListener('onkeyup', e => {
-  if (e.keyCode == 13) advanceOne(); // code 13 is enter key
+
+this.addEventListener('keypress', e => {
+  if (e.keyCode == 13) {
+    advanceOne();
+  }
 });
 
 // determine which direction user is facing

@@ -14,6 +14,7 @@
 
 <!-- WIP/TESTS/SCRATCHPAD -->
 <script>
+/*
 AFRAME.registerComponent('testerbox', {
   init: function () {
     console.log('init');
@@ -22,9 +23,21 @@ AFRAME.registerComponent('testerbox', {
     console.log('tick');
   }
 });
-</script>
-<a-box testerbox position="0 -2 1" material="color: #333; shader: flat"></a-box>
+*/
+window.onload = () => {
 
+
+  fetch('level1.html', { method: 'GET' })
+    .then(response => response.text())
+    .then(response => {
+      console.log(response);
+      var str = response;
+      document.getElementById('map').innerHTML = str;
+    });
+};
+
+</script>
+<!--<a-box id="testerbox" testerbox position="0 0 1" material="color: #333; shader: flat"></a-box>-->
 
 
     <!-- set camera elevation (y-coors) and add cursor and hud (optional extras) -->
@@ -38,28 +51,8 @@ AFRAME.registerComponent('testerbox', {
     <a-entity laser-controls raycaster="objects: [data-raycastable]; far: 0.8"></a-entity>
     <a-entity oculus-go-controls="hand: right" triggerlistener></a-entity>
 
-    <!-- map/level -->
-    <a-entity id="map" position="0 0.5 -3" map>
-      <!-- floors -->
-      <a-box position="0 0 1" material="color: #FFF; shader: flat; src: textures/texture.png"></a-box>
-      <a-box position="0 0 2" material="color: #FFF; shader: flat; src: textures/texture.png"></a-box>
-      <a-box position="0 0 3" material="color: #FFF; shader: flat; src: textures/texture.png"></a-box>
-      <!-- left walls -->
-      <a-box position="-1 1 0" material="color: #00F"></a-box>
-      <a-box position="-1 1 1" material="color: #00F"></a-box>
-      <a-box position="-1 1 2" material="color: #00F"></a-box>
-      <a-box position="-1 1 3" material="color: #00F"></a-box>
-      <!-- right walls -->
-      <a-box position="1 1 0" material="color: #F00"></a-box>
-      <a-box position="1 1 1" material="color: #F00"></a-box>
-      <a-box position="1 1 2" material="color: #F00"></a-box>
-      <a-box position="1 1 3" material="color: #F00"></a-box>
-      <!-- ceilings -->
-      <a-box position="0 2 0" material="color: #888"></a-box>
-      <a-box position="0 2 1" material="color: #888"></a-box>
-      <a-box position="0 2 2" material="color: #888"></a-box>
-      <a-box position="0 2 3" material="color: #888"></a-box>
-    </a-entity>
+    <!-- map/level container -->
+    <a-entity id="map" position="0 0.5 -3" map></a-entity>
 
   </a-scene>
 
