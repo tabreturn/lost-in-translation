@@ -18,8 +18,8 @@
 </script>
 <!-- -->
 
-    <!-- set camera elevation (y-coors) and add cursor and hud (optional extras) -->
-    <a-entity camera look-controls position="0 1.5 0">
+    <!-- add a cursor and hud to a camera (optional extras) -->
+    <a-entity camera look-controls>
       <a-cursor visible="false"></a-cursor>
       <a-text visible="true" id="hud" value="..." position="-0.2 0 -1" color="#000"></a-text>
     </a-entity>
@@ -30,7 +30,7 @@
     <a-entity oculus-go-controls="hand: right" triggerlistener></a-entity>
 
     <!-- map/level container -->
-    <a-entity id="map" position="0 0.5 0" map></a-entity>
+    <a-entity map id="map"></a-entity>
   </a-scene>
 </body>
 </html>
