@@ -25,6 +25,14 @@
                 // el.addEventListener('xbuttondown', function (evt) {
                 //     el.setAttribute('visible', !el.getAttribute('visible'));
                 // });
+                // <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-hand"></a-entity>
+
+                el.setAttribute('light', {
+                    type: 'spot',
+                    distance: 0,
+                    intensity: 1,
+                    color: '#FFF'
+                }, true);
             },
             update: function () {
                 var hand = this.data.hand;
@@ -67,7 +75,7 @@
         </a-assets>
         <a-entity id="lantern" scale='0.15 0.15 0.15' gltf-model="#lantern-item"></a-entity>
 
-        <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-hand"></a-entity>
+        <!-- <a-entity id="light" light="type: spot; color: #FFF; intensity: 1; decay: 0.1; target: #right-hand"></a-entity> -->
 
         <a-assets>
             <a-mixin id="beveled-square"
@@ -122,5 +130,4 @@
     </script>
 </body>
 
->>>>>>> 8666d4f460163e065951f7884c0ebb96cff62980
 </html>
