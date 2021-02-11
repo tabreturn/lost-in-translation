@@ -25,6 +25,14 @@
             ball.body.applyLocalImpulse(velocity.scale(50), new CANNON.Vec3(0, 0, 0));
         }
 
+        AFRAME.registerComponent('random-color', {
+          dependencies: ['material'],
+    
+          init: function () {
+            this.el.setAttribute('material', 'color', getRandomColor());
+          }
+        });
+
         AFRAME.registerComponent('intersection-spawn', {
           schema: {
             default: '',
@@ -98,6 +106,15 @@
             }
         });
 
+        function getRandomColor() {
+          const letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        }
+
         window.onload = function () {
             ball = document.getElementById('ball');
             // make the ball not bounce when colliding with the ground or the bumpers
@@ -132,14 +149,15 @@
 
       <!-- <a-entity controller-cursor intersection-spawn="event: click; mixin: voxel" static-body sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity> -->
       
-      <a-entity
+      <!-- <a-entity
         id="leftController"
         static-body="shape: sphere; sphereRadius: 0.02;"
         vive-controls="hand: left"
         super-hands hand-controls="hand: left"
         sphere-collider="objects: .throwable"
         intersection-spawn="event: click; mixin: voxel"
-      ></a-entity>
+      ></a-entity> -->
+      <a-entity controller-cursor intersection-spawn="event: click; mixin: voxel" static-body sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
       <a-entity
         id="rightController"
         static-body="shape: sphere; sphereRadius: 0.02;"
@@ -153,8 +171,8 @@
       <a-sphere class="throwable" dynamic-body position="0 0.25 -0.5" radius="0.10" color="green"></a-sphere>
       <a-sphere class="throwable" dynamic-body position="0.25 0.25 -0.5" radius="0.10" color="yellow"></a-sphere>
       <a-sphere class="throwable" dynamic-body position="-0.25 0.25 -0.5" radius="0.10" color="yellow"></a-sphere>
-      <a-sphere class="throwable" dynamic-body position="-0.651 1.8 -0.5" radius="0.10" color="yellow"></a-sphere>
-      <a-sphere class="throwable" dynamic-body position="-1.25 1.8 -0.5" radius="0.10" color="green"></a-sphere>
+      <!-- <a-sphere class="throwable" dynamic-body position="-0.651 1.8 -0.5" radius="0.10" color="yellow"></a-sphere> -->
+      <!-- <a-sphere class="throwable" dynamic-body position="-1.25 1.8 -0.5" radius="0.10" color="green"></a-sphere> -->
       <a-sphere class="throwable" dynamic-body position="0.96 1.6 -0.5" radius="0.10" color="yellow"></a-sphere>
 
       <!--Table to hold the targets -->
