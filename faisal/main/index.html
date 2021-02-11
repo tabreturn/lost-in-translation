@@ -14,6 +14,8 @@
       <script src="https://stemkoski.github.io/A-Frame-Examples/js/aframe-parametric-curve.js"></script>
       <script src="https://stemkoski.github.io/A-Frame-Examples/js/aframe-tube-geometry.js"></script>
       <script src="https://stemkoski.github.io/A-Frame-Examples/js/aframe-curve-follow.js"></script>
+      <!-- <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> -->
+
 
       <script>
         var shallThrow = false;
@@ -165,6 +167,8 @@
         <a-asset-item id="coin-obj" src="models/coin.obj"></a-asset-item>
         <a-asset-item id="coin-mtl" src="models/coin.mtl"></a-asset-item>
 
+        <a-asset-item id="fire-item" src="../assets/fire_animation/scene.gltf"></a-asset-item>
+        <a-asset-item id="lantern-item" src="../assets/old_lantern/scene.gltf"></a-asset-item>
 
         <audio id="whoosh-mp3" src="models/whoosh.mp3" preload="auto"></audio>
       </a-assets>
@@ -187,6 +191,9 @@
         <a-light type="point" intensity="2" penumbra="0.5" distance="5" decay="2" color="#ff844e">
           <a-animation attribute="intensity" easing="linear" repeat="indefinite" delay="30" from="0" to="1" dur="50" fill="backwards"></a-animation>
         </a-light>
+        <a-entity id="lantern" scale='0.15 0.15 0.15' position='0 -0.15 0' gltf-model="#lantern-item"></a-entity>
+        <a-entity id='fire' scale='0.01 0.01 0.01' position='0 -0.19 0' gltf-model="#fire-item" animation-mixer></a-entity>
+
       </a-entity>
       <a-entity
         id="rightController"
