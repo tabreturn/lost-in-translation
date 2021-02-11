@@ -24,7 +24,25 @@ AFRAME.registerComponent('triggerlistener', {
 // determine which direction user is facing
 AFRAME.registerComponent('rotation-reader', {
   tick: function () {
-    let camrot = document.querySelector('[camera]').getAttribute('rotation').y;
-    console.log(Math.abs(camrot % 360));
+    let camrot = document.querySelector('[camera]').getAttribute('rotation').y % 360;
+    let cardinal;
+
+    if (camrot >= 0) {
+      if (camrot < 45) cardinal = 'N';
+      else if (camrot < 135) cardinal = 'W';
+      else if (camrot < 225) cardinal = 'S';
+      else if (camrot < 360) cardinal = 'E';
+      else cardinal = camrot;
+    }
+    else {
+      if (camrot > -45) cardinal = 'N';
+      else if (camrot > -135) cardinal = 'E';
+      else if (camrot > -225) cardinal = 'S';
+      else if (camrot > -360) cardinal = 'W';
+      else cardinal = camrot;
+    }
+    
+    document.getElementById('hud').setAttribute('value', cardinal);
+    console.log(camrot);
   }
 });
