@@ -106,6 +106,8 @@
             }
         });
 
+        
+
         function getRandomColor() {
           const letters = '0123456789ABCDEF';
           var color = '#';
@@ -125,6 +127,12 @@
             for (let i = 0; i < laneObjects.length; i++) {
                 laneObjects[i].body.material = groundMaterial;
             }
+
+            var playerEl = document.querySelector('#cool');
+            playerEl.addEventListener('collide', function (e) {
+              if(e.detail.body.el.id == "table")
+                e.detail.body.el.parentNode.removeChild(e.detail.body.el);
+            });
         };
       </script>
 
@@ -171,21 +179,12 @@
       <a-sphere class="throwable" dynamic-body position="0 0.25 -0.5" radius="0.10" color="green"></a-sphere>
       <a-sphere class="throwable" dynamic-body position="0.25 0.25 -0.5" radius="0.10" color="yellow"></a-sphere>
       <a-sphere class="throwable" dynamic-body position="-0.25 0.25 -0.5" radius="0.10" color="yellow"></a-sphere>
-      <!-- <a-sphere class="throwable" dynamic-body position="-0.651 1.8 -0.5" radius="0.10" color="yellow"></a-sphere> -->
-      <!-- <a-sphere class="throwable" dynamic-body position="-1.25 1.8 -0.5" radius="0.10" color="green"></a-sphere> -->
-      <a-sphere class="throwable" dynamic-body position="0.96 1.6 -0.5" radius="0.10" color="yellow"></a-sphere>
+      <a-box id="cool" class="throwable" dynamic-body="mass: 5" position="0 0.25 0.5" color="red"></a-box>
 
       <!--Table to hold the targets -->
-      <a-box
-        static-body
-        position="2 1 0"
-        width="2"
-        height="0.1"
-        depth="2"
-        color="grey"
-      ></a-box>
+      <a-box id="table" static-body position="2 1 0" width="2" height="0.1" depth="5" color="grey"></a-box>
 
-      <a-box position="0 0.25 10.5" width="2" height="4" color="red"></a-sphere>
+      <a-box position="0 0.25 10.5" radius="5" color="red"></a-sphere>
 
       <!-- The targets (will be generated with D3) -->
       <a-entity id="boxes"></a-entity>
@@ -235,19 +234,15 @@
          .attr('dynamic-body', '');
 
 
-        setInterval(function() {
-          console.log('asd');
-        }, 1000); 
+        
   </script>
 
 
 <script>
-  setTimeout(() => {
-  // let box = document.querySelector('a-boxs');
-
-  // box.setAttribute('zoom-front-camera', 'zooming', true);
-
-}, 2000);
+  // setTimeout(() => {
+    // let box = document.querySelector('a-box');
+    // box.setAttribute('zoom-front-camera', 'zooming', true);
+  // }, 2000);
 
 
 const THREE = window.THREE
@@ -257,21 +252,18 @@ let animationPlaying = false
 let animationCompleted = false
 
 AFRAME.registerComponent('zoom-front-camera', {
-
   schema: {
     zooming: {
       type: 'boolean'
     },
   },
-
-  _cameraEntity: null, //Camera Entity
-
-  _threeElement: null, //this.el in ThreeJS (Object3D)
-  _threeCamera: null, //Camera entity in ThreeJS (Object3D)
-  _initialQuaternion: null, //Initial Quaternion property
-  _initialPosition: null, //Initial Position property
-  _targetQuaternion: null, //Target Quaternion property
-  _targetPosition: null, //Target Position property
+  _cameraEntity: null, 
+  _threeElement: null, 
+  _threeCamera: null, 
+  _initialQuaternion: null,
+  _initialPosition: null, 
+  _targetQuaternion: null,
+  _targetPosition: null, 
 
   //Initialize var, add the event listeners & call the function to change element position
   init: function() {
@@ -334,8 +326,6 @@ AFRAME.registerComponent('zoom-front-camera', {
     this._initialPosition = this._threeElement.position.clone()
     this._initialQuaternion = this._threeElement.quaternion.clone()
 
-    //Some maths to obtain objects around the same size of the screen
-
     //Retrieving the Field of View (FOV) from the camera attribute
     const {
       fov
@@ -343,7 +333,7 @@ AFRAME.registerComponent('zoom-front-camera', {
 
     //Convert fov + reduce it
     let fovInRad = degToRad(fov) / 2
-    let ratio = window.innerWidth / window.innerHeight //Assuming the FOV is vertical
+    let ratio = window.innerWidth / window.innerHeight 
     let pLocal, cPos
 
     let bbox = getCompoundBoundingBox(this._threeElement)
