@@ -39,14 +39,14 @@ A WebXR game made with A-Frame. Showcased at [International XR Workshop 2021](ht
   * AR and VR Using the WebXR API: https://www.apress.com/gp/book/9781484263174
 
 ## inspiration
-<img src="https://live.staticflickr.com/65535/49014810766_93b91a2ff3_o.jpg" height="100" 
+<img src="https://live.staticflickr.com/65535/49014810766_93b91a2ff3_o.jpg" height="100"
 /><img src="https://technofaq.org/wp-content/uploads/2018/11/world-of-mazes.jpg" height="100"
 /><img src="https://i1.wp.com/waytoomany.games/wp-content/uploads/2019/12/Last-Labyrinth_20191127145549.jpg" height="100"
 /><img src="https://www.bestoldgames.net/img/ss/eye-of-the-beholder/eye-of-the-beholder-ss4.gif" height="100"
+/><img src="https://images.springer.com/sgw/books/medium/9781484263174.jpg" height="100"
 /><img src="https://specials-images.forbesimg.com/imageserve/5deb581de961e100078f5fb3/960x0.jpg" height="100"
 /><img src="https://i.imgur.com/5UUKk10.png" height="100"
 /><img src="https://gaminghistory101.files.wordpress.com/2014/09/wolf_2.jpg" height="100"
-/><img src="https://images.springer.com/sgw/books/medium/9781484263174.jpg" height="100"
 />
 
 ## to-do
