@@ -2,7 +2,7 @@
 
 *International XR Workshop 2021 demo*
 
-In this VR game, two players -- one in a VR headset and one in physical reality -- must communicate effectively to reach the end of a series of maze-like levels. The 'reality-based' player has a map with directions; the VR player relies on her/him to provide directions.
+In this VR game, two players -- one in a VR headset and one in physical reality -- must communicate effectively to reach the end of a series of maze-like levels. The 'reality-based' player has a map for directions; the VR-player relies on the map-holder to provide directions.
 
 [live demo](https://lit.cmp.ac.nz/)
 
