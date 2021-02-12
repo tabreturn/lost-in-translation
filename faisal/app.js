@@ -13,6 +13,7 @@ const options = {
 };
 
 app.use('/images', express.static(__dirname + '/assets/gfx'))
+app.use('/models', express.static(__dirname + '/assets/models'))
 
 //middlewares
 app.use(express.static(__dirname));
