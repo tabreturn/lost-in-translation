@@ -54,6 +54,7 @@ A WebXR game made with A-Frame. Showcased at [International XR Workshop 2021](ht
 - [x] create movement engine
 - [x] add maps
 - [x] add lamp
+- [ ] add audio
 - [ ] constrain player to floors (2d array to track position on map?)
 - [ ] add advancing tween
 
