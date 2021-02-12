@@ -18,6 +18,7 @@
 
     <!-- load assets -->
     <a-assets>
+      <img id="ball" src="models/basketball-gray.png" />
       <a-asset-item id="coin-obj" src="models/coin.obj"></a-asset-item>
       <a-asset-item id="coin-mtl" src="models/coin.mtl"></a-asset-item>
       <a-asset-item id="fire-item" src="assets/fire_animation/scene.gltf"></a-asset-item>
@@ -26,7 +27,10 @@
 
     <!-- throwble object / coin -->
     <a-entity class="throwable" src="#coin" obj-model="obj:#coin-obj; mtl:#coin-mtl"
-              scale="0.1 0.1 0.1" position="-0.25 0.25 -0.5" color="yellow" dynamic-body></a-entity>
+              scale="0.1 0.1 0.1" position="0 0 7" color="yellow" dynamic-body></a-entity>
+
+    <a-sphere class="throwable" src="#ball" dynamic-body position="0 0 8" radius="0.10" color="green"></a-sphere>
+    <a-sphere class="throwable" src="#ball" dynamic-body position="0 0 8" radius="0.10" color="yellow"></a-sphere>
 
     <!-- right controller -->
     <a-entity id="rightController" static-body="shape:sphere; sphereRadius:0.02"
