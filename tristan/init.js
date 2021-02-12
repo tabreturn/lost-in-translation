@@ -26,13 +26,24 @@ AFRAME.registerComponent('map', {
   }
 });
 
+AFRAME.registerComponent('lamp', {
+  // set lamp values
+  init: function () {
+    let el = this.el;
+    el.setAttribute('intensity', el.getAttribute('intensity')*cubescale);
+    el.setAttribute('penumbra', el.getAttribute('penumbra')*cubescale);
+    el.setAttribute('distance', el.getAttribute('distance')*cubescale);
+    el.setAttribute('decay', el.getAttribute('decay')*cubescale);
+  }
+});
+
 function advanceOne() {
   // 'move' player by shifting the map
   switch (cardinal) {
-    case 'N': zco += 1 * cubescale; break;
-    case 'S': zco -= 1 * cubescale; break;
-    case 'W': xco += 1 * cubescale; break;
-    case 'E': xco -= 1 * cubescale; break;
+    case 'N': zco -= 1 * cubescale; break;
+    case 'S': zco += 1 * cubescale; break;
+    case 'W': xco -= 1 * cubescale; break;
+    case 'E': xco += 1 * cubescale; break;
     default : console.log('error: invalid cardinal point');
   }
   document.getElementById('map').setAttribute('position', {x:xco, y:-cubescale, z:zco});
@@ -60,17 +71,17 @@ AFRAME.registerComponent('rotation-reader', {
     let camrot = document.querySelector('[camera]').getAttribute('rotation').y % 360;
     // determine if the player is facing N, S, W, E
     if (camrot >= 0) {
-      if (camrot < 45) cardinal = 'N';
-      else if (camrot < 135) cardinal = 'W';
-      else if (camrot < 225) cardinal = 'S';
-      else if (camrot < 360) cardinal = 'E';
+      if (camrot < 45) cardinal = 'S';
+      else if (camrot < 135) cardinal = 'E';
+      else if (camrot < 225) cardinal = 'N';
+      else if (camrot < 360) cardinal = 'W';
       else cardinal = camrot; // fall-through case logs rotation value in degrees
     }
     else {
-      if (camrot > -45) cardinal = 'N';
-      else if (camrot > -135) cardinal = 'E';
-      else if (camrot > -225) cardinal = 'S';
-      else if (camrot > -360) cardinal = 'W';
+      if (camrot > -45) cardinal = 'S';
+      else if (camrot > -135) cardinal = 'W';
+      else if (camrot > -225) cardinal = 'N';
+      else if (camrot > -360) cardinal = 'E';
       else cardinal = camrot; // fall-through case logs rotation value in degrees
     }
 
