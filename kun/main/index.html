@@ -8,6 +8,8 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://rawgit.com/caseyyee/aframe-ui-widgets/master/dist/aframe-ui-widgets.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+
 
     <script src="level1.js"></script>
     <!-- <script src="lantern.js"></script> -->
@@ -24,20 +26,15 @@
                 el.appendChild(fire)
                 el.appendChild(lantern)
 
-                el.setAttribute('light', {
-                    id: 'light',
-                    type: 'spot',
-                    distance: 5,
-                    decay: 2,
-                    intensity: 1,
-                    color: '#ff844e',
-                    penumbra: 0.3,
-                }, true)
-                el.setAttribute('animation', {
-                    begin: "flash", attribute: "intensity", delay: "30", from: "0", to: "1", dur: "50", loop: "true"
-                }, true)
-                document.querySelector('#light a-light').emit('flash');
-
+                // el.setAttribute('light', {
+                //     id: 'light',
+                //     type: 'spot',
+                //     distance: 5,
+                //     decay: 2,
+                //     intensity: 1,
+                //     color: '#ff844e',
+                //     penumbra: 0.3,
+                // }, true)
             },
             update: function () {
                 var hand = this.data.hand;
@@ -63,8 +60,22 @@
 </head>
 
 <body>
-    <a-scene light="defaultLightsEnabled: false">
+    <a-scene>
+        <!-- <a-scene light="defaultLightsEnabled: false"> -->
         <a-sky color="#00FF00"></a-sky>
+
+        <a-gui-flex-container id="ending_panel" flex-direction="column" justify-content="center" align-items="normal"
+            component-padding="0.3" opacity="0.7" width="3.5" height="4.5" position="2 2.5 -4" rotation="0 0 0">
+            <a-gui-label width="2.5" height="0.75" font-size="120px" value="You Dead, Continue?" font-family="Arial"
+                margin="0 0 0.8 0">
+            </a-gui-label>
+            <a-gui-circle-timer height="0.75" count-down="10" font-family="Arial" margin="0 0 0.8 0"
+                active-color="#ed5b21">
+            </a-gui-circle-timer>
+            <a-gui-button width="2" height="0.55" font-size="100px" onclick="buttonActionFunction" key-code="32"
+                value="Continue" font-family="Arial" margin="0 0 0.05 0">
+            </a-gui-button>
+        </a-gui-flex-container>
 
         <a-entity id="right-hand" custom-controls="hand: right"></a-entity>
 
@@ -107,25 +118,25 @@
 
         <a-entity id="map" position="0 0.5 -3">
             <!-- floors -->
-            <a-box position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+            <!-- <a-box position="0 0 0" material="color: #FFF; shader: flat; src: texture.png"></a-box>
             <a-box position="0 0 1" material="color: #FFF; shader: flat; src: texture.png"></a-box>
             <a-box position="0 0 2" material="color: #FFF; shader: flat; src: texture.png"></a-box>
-            <a-box position="0 0 3" material="color: #FFF; shader: flat; src: texture.png"></a-box>
+            <a-box position="0 0 3" material="color: #FFF; shader: flat; src: texture.png"></a-box> -->
             <!-- left walls -->
-            <a-box position="-1 1 0" material="color: #00F"></a-box>
+            <!-- <a-box position="-1 1 0" material="color: #00F"></a-box>
             <a-box position="-1 1 1" material="color: #00F"></a-box>
             <a-box position="-1 1 2" material="color: #00F"></a-box>
-            <a-box position="-1 1 3" material="color: #00F"></a-box>
+            <a-box position="-1 1 3" material="color: #00F"></a-box> -->
             <!-- right walls -->
-            <a-box position="1 1 0" material="color: #F00"></a-box>
+            <!-- <a-box position="1 1 0" material="color: #F00"></a-box>
             <a-box position="1 1 1" material="color: #F00"></a-box>
             <a-box position="1 1 2" material="color: #F00"></a-box>
-            <a-box position="1 1 3" material="color: #F00"></a-box>
+            <a-box position="1 1 3" material="color: #F00"></a-box> -->
             <!-- ceilings -->
-            <a-box position="0 2 0" material="color: #888"></a-box>
+            <!-- <a-box position="0 2 0" material="color: #888"></a-box>
             <a-box position="0 2 1" material="color: #888"></a-box>
             <a-box position="0 2 2" material="color: #888"></a-box>
-            <a-box position="0 2 3" material="color: #888"></a-box>
+            <a-box position="0 2 3" material="color: #888"></a-box> -->
         </a-entity>
     </a-scene>
     <script>
@@ -138,4 +149,5 @@
         }
     </script>
 </body>
+
 </html>
