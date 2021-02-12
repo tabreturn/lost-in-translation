@@ -5,7 +5,10 @@
   <meta charset="utf-8">
   <title>Lost in Translation ... by Blue Dot Studios</title>
   <link rel="icon" href="blue-dot-logo.png" />
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
   <script src="init.js"></script>
 </head>
 
@@ -13,13 +16,35 @@
   <a-scene>
     <a-sky color="#FFF"></a-sky>
 
+    <!-- load assets -->
+    <a-assets>
+      <a-asset-item id="coin-obj" src="models/coin.obj"></a-asset-item>
+      <a-asset-item id="coin-mtl" src="models/coin.mtl"></a-asset-item>
+      <a-asset-item id="fire-item" src="assets/fire_animation/scene.gltf"></a-asset-item>
+      <a-asset-item id="lantern-item" src="assets/old_lantern/scene.gltf"></a-asset-item>
+    </a-assets>
 
-<!-- WIP/TESTS/SCRATCHPAD -->
-<script>
-/* */
-</script>
-<!-- -->
+    <!-- throwble object / coin -->
+    <a-entity class="throwable" src="#coin" obj-model="obj:#coin-obj; mtl:#coin-mtl"
+              scale="0.1 0.1 0.1" position="-0.25 0.25 -0.5" color="yellow" dynamic-body></a-entity>
 
+    <!-- right controller -->
+    <a-entity id="rightController" static-body="shape:sphere; sphereRadius:0.02"
+              vive-controls="hand:right" super-hands hand-controls="hand:right"
+              sphere-collider="objects:.throwable" grab></a-entity>
+
+    <!-- left controller -->
+    <a-entity triggerlistener static-body sphere-collider="objects:a-box" super-hands hand-controls="hand:left">
+
+      <a-entity>
+        <a-light type="point" intensity="1.5" penumbra="0.5" distance="50" decay="2" color="#ff844e">
+          <a-animation attribute="intensity" easing="linear" repeat="indefinite"
+                       delay="30" from="0" to="1" dur="50" fill="backwards"></a-animation>
+        </a-light>
+        <a-entity id="lantern" scale="0.15 0.15 0.15" position="0 -0.15 0" gltf-model="#lantern-item"></a-entity>
+        <a-entity id="fire" scale="0.01 0.01 0.01" position="0 -0.19 0" gltf-model="#fire-item" animation-mixer></a-entity>
+      </a-entity>
+    </a-entity>
 
     <!-- add a cursor and hud to a camera (optional extras) -->
     <a-entity camera look-controls>
@@ -28,18 +53,16 @@
       <a-text visible="true" id="hudshadow" value="..." position="-0.05 -0.015 -1" color="#000" width="2"></a-text>
       <a-text visible="true" id="hud" value="..." position="-0.055 -0.01 -1" color="#FFF" width="2"></a-text>
       <!-- add lamp (light attributes calibrated in init.js) -->
-      <a-light lamp id="lamp" type="point" color="#FB5" intensity="0.5" penumbra="0" distance="30" decay="2.5"></a-light>
+      <!--<a-light lamp id="lamp" type="point" color="#FB5" intensity="0.5" penumbra="0" distance="30" decay="2.5"></a-light>-->
     </a-entity>
 
     <!-- add entities for rotation reader, raycaster, oculus controls -->
     <a-entity rotation-reader></a-entity>
-    <a-entity laser-controls raycaster="objects: [data-raycastable]; far: 0.8"></a-entity>
-    <a-entity id="right-controller" oculus-go-controls="hand: right" triggerlistener></a-entity>
-    <!--<a-entity id="right-hand" custom-controls="hand: right"></a-entity>-->
+    <a-entity laser-controls raycaster="objects:[data-raycastable]; far:0.8"></a-entity>
+    <!--<a-entity id="right-controller" oculus-go-controls="hand: right" triggerlistener></a-entity>-->
 
     <!-- map/level container -->
-    <a-entity map id="map">
-    </a-entity>
+    <a-entity map id="map"></a-entity>
   </a-scene>
 </body>
 
