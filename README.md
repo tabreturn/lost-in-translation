@@ -20,8 +20,8 @@ A WebXR game made with A-Frame. Showcased at [International XR Workshop 2021](ht
   * http://gameprogrammingpatterns.com/component.html
   * http://cowboyprogramming.com/2007/01/05/evolve-your-heirachy/
 * Hosting
-  * Servez is handy for https hosting
-  * use https for WebXR; use the 'advanced' in your browser to trust the self-signed certificate
+  * Servez is handy for HTTPS hosting
+  * use HTTPS for WebXR; use the 'advanced' in your browser to trust the self-signed certificate
   * use `<ctrl> + <alt> + i` to open the A-Frame inspector
 * Useful A-Frame add-ons:
   * environment: https://github.com/supermedium/aframe-environment-component
@@ -34,7 +34,7 @@ A WebXR game made with A-Frame. Showcased at [International XR Workshop 2021](ht
   * super hands: https://github.com/wmurphyrd/aframe-super-hands-component
   * augmented reality: https://github.com/jeromeetienne/AR.js#augmented-reality-for-the-web-in-less-than-10-lines-of-html
 * Lights:
-  * codepen demo: https://codepen.io/dirkk0/pen/rwggLd
+  * CodePen demo: https://codepen.io/dirkk0/pen/rwggLd
 
 ## inspiration
 <img src="https://live.staticflickr.com/65535/49014810766_93b91a2ff3_o.jpg" height="100"
