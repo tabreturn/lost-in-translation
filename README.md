@@ -1,15 +1,15 @@
-# lost-in-translation
+# Lost in Translation
 
 *International XR Workshop 2021 demo*
 
 In this VR game, two players -- one in a VR headset and one in physical reality -- must communicate effectively to reach the end of a series of maze-like levels. The 'reality-based' player has a map with directions; the VR player relies on her/him to provide directions.
 
-A WebXR game made with A-Frame  
-Showcased at [International XR Workshop 2021](https://sites.google.com/view/xrworkshop/home), 9-12 February @
-School of Design, University of Auckland, New Zealand
+[live demo](https://lit.cmp.ac.nz/)
+
+A WebXR game made with A-Frame. Showcased at [International XR Workshop 2021](https://sites.google.com/view/xrworkshop/home), 9-12 February @ School of Design, University of Auckland, New Zealand
 
 ![](screenshot.png)  
-*work in progress screenshot*
+*Work-in-progress screenshot*
 
 # useful resources
 
@@ -19,13 +19,11 @@ School of Design, University of Auckland, New Zealand
   * http://t-machine.org/index.php/2007/11/11/entity-systems-are-the-future-of-mmog-development-part-2/
   * http://gameprogrammingpatterns.com/component.html
   * http://cowboyprogramming.com/2007/01/05/evolve-your-heirachy/
-
-* hosting
+* Hosting
   * Servez is handy for https hosting
   * use https for WebXR; use the 'advanced' in your browser to trust the self-signed certificate
   * use `<ctrl> + <alt> + i` to open the A-Frame inspector
-
-* useful A-Frame add-ons:
+* Useful A-Frame add-ons:
   * environment: https://github.com/supermedium/aframe-environment-component
   * state: https://npmjs.com/package/aframe-state-component
   * particle systems: https://github.com/IdeaSpaceVR/aframe-particle-system-component
@@ -35,11 +33,10 @@ School of Design, University of Auckland, New Zealand
   * teleportation: https://github.com/fernandojsg/aframe-teleport-controls
   * super hands: https://github.com/wmurphyrd/aframe-super-hands-component
   * augmented reality: https://github.com/jeromeetienne/AR.js#augmented-reality-for-the-web-in-less-than-10-lines-of-html
-
-* lights:
+* Lights:
   * codepen demo: https://codepen.io/dirkk0/pen/rwggLd
 
-## inspiration:  
+## inspiration
 <img src="https://live.staticflickr.com/65535/49014810766_93b91a2ff3_o.jpg" height="100"
 /><img src="https://technofaq.org/wp-content/uploads/2018/11/world-of-mazes.jpg" height="100"
 /><img src="https://i1.wp.com/waytoomany.games/wp-content/uploads/2019/12/Last-Labyrinth_20191127145549.jpg" height="100"
@@ -53,8 +50,8 @@ School of Design, University of Auckland, New Zealand
 
 - [x] create movement engine
 - [x] add maps
-- [ ] add lamp
-- [ ] constrain player to floors
+- [x] add lamp
+- [ ] constrain player to floors (2d array to track position on map?)
 - [ ] add advancing tween
 
 Created by *Blue Dot Studios* -- Andre, Faisal, Hiroshika, Kun, and Tristan
