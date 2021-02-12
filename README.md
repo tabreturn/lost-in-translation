@@ -39,6 +39,16 @@ School of Design, University of Auckland, New Zealand
 * lights:
   * codepen demo: https://codepen.io/dirkk0/pen/rwggLd
 
+* some design inspiration:  
+<img src="https://live.staticflickr.com/65535/49014810766_93b91a2ff3_o.jpg" height="100"
+/><img src="https://technofaq.org/wp-content/uploads/2018/11/world-of-mazes.jpg" height="100"
+/><img src="https://i1.wp.com/waytoomany.games/wp-content/uploads/2019/12/Last-Labyrinth_20191127145549.jpg" height="100"
+/><img src="https://www.bestoldgames.net/img/ss/eye-of-the-beholder/eye-of-the-beholder-ss4.gif" height="100"
+/><img src="https://specials-images.forbesimg.com/imageserve/5deb581de961e100078f5fb3/960x0.jpg" height="100"
+/><img src="https://i.imgur.com/5UUKk10.png" height="100"
+/><img src="https://gaminghistory101.files.wordpress.com/2014/09/wolf_2.jpg" height="100"
+/>
+
 ## to-do
 
 - [x] create movement engine
