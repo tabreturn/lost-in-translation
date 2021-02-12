@@ -8,3 +8,4 @@ Thumbs.db
 node_modules
 kun/node_modules
 faisal/node_modules
+*.pem
