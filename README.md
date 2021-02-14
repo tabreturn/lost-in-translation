@@ -11,6 +11,7 @@ A WebXR game made with A-Frame. Showcased at [International XR Workshop 2021](ht
 ![](screenshot.png)  
 *Work-in-progress screenshot*
 
+<!--
 # useful resources
 
 * A-Frame is a three.js framework that adopts an Entity-Component-System (ECS) architecture:
@@ -37,6 +38,7 @@ A WebXR game made with A-Frame. Showcased at [International XR Workshop 2021](ht
   * CodePen demo: https://codepen.io/dirkk0/pen/rwggLd
 * Books:
   * AR and VR Using the WebXR API: https://www.apress.com/gp/book/9781484263174
+-->
 
 ## inspiration
 <img src="https://live.staticflickr.com/65535/49014810766_93b91a2ff3_o.jpg" height="100"
